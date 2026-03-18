@@ -1,0 +1,24 @@
+# --- Geral ---
+node_modules
+**/node_modules
+.pnpm-store
+.git
+.vscode
+.env
+
+# --- Backend (API) ---
+termis_project_api/dist
+# Isso limpa os JS que vimos "sujando" o seu NestJS
+termis_project_api/src/**/*.js
+termis_project_api/src/**/*.js.map
+
+# --- Frontend (Web) ---
+termis_project_web/dist
+termis_project_web/build
+termis_project_web/.next
+# Se o seu front usa arquivos .js propositais, 
+# NÃO adicione a regra de ignorar .js para a pasta web.
+
+# --- Logs ---
+*.log
+npm-debug.log*

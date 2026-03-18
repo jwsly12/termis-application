@@ -1,0 +1,11 @@
+packages:
+  "framer-motion": "For smooth layout transitions and micro-interactions"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility function to efficiently merge Tailwind CSS classes"
+
+images: []
+
+notes:
+  - "Since no backend API was provided, all TanStack Query hooks use mock data with artificial delays to simulate network requests."
+  - "The application defaults to a dark theme to match the requested 'dark charcoal/slate tones' aesthetic."
+  - "Charts are implemented using pure SVG within React components to avoid heavy chart library dependencies."

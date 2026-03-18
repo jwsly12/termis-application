@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🧊 SmartCool & Energy Optimizer ⚡
 
 > Sistema inteligente de gestão de HVAC (Heating, Ventilation, and Air Conditioning) focado em eficiência energética e automação de processos de refrigeração.
@@ -72,3 +73,84 @@ Dentro da aplicação, o **Dev Point** serve como nosso laboratório de testes.
 Este projeto foi concebido sob o pilar da sustentabilidade. Acreditamos que a melhor energia é aquela que não precisa ser consumida através da inteligência aplicada ao software.
 
 **Desenvolvido por [Seu Nome/GitHub]** 🚀
+=======
+# Termis Dashboard — Configuração Local
+
+  ## Pré-requisitos
+
+  - [Node.js](https://nodejs.org/) v18 ou superior
+  - [pnpm](https://pnpm.io/) v8 ou superior
+    ```bash
+    npm install -g pnpm
+    ```
+
+  ---
+
+  ## Estrutura do Projeto
+
+  ```
+  termis/
+  ├── artifacts/
+  │   ├── termis-web/        # Front-end React + Vite (Dashboard)
+  │   └── api-server/        # API Express (estrutura base)
+  ├── termis_project_api/    # API NestJS + TypeORM (backend principal)
+  ├── termis_project_web/    # Dockerfiles para deploy do front-end
+  ├── lib/                   # Bibliotecas compartilhadas
+  └── docker-compose.yml     # Orquestração com Docker
+  ```
+
+  ---
+
+  ## Opção 1 — Rodar com pnpm (recomendado para desenvolvimento)
+
+  ### Instalar dependências
+  ```bash
+  pnpm install
+  ```
+
+  ### Rodar o Front-end
+  ```bash
+  cd artifacts/termis-web
+  pnpm dev
+  ```
+  Acesse: **http://localhost:5173**
+
+  ### Rodar a API Express (estrutura base)
+  ```bash
+  cd artifacts/api-server
+  pnpm dev
+  ```
+  Acesse: **http://localhost:3001/api/health**
+
+  ### Rodar a API NestJS (backend principal)
+  ```bash
+  cd termis_project_api
+  npm install
+  npm run start:dev
+  ```
+
+  ---
+
+  ## Opção 2 — Rodar com Docker Compose
+
+  ```bash
+  # Copie e configure as variáveis de ambiente
+  cp .env.example .env
+
+  # Suba todos os serviços
+  docker-compose up --build
+  ```
+
+  ---
+
+  ## Variáveis de Ambiente
+
+  Consulte o arquivo `.env.example` para ver as variáveis necessárias.
+
+  O front-end aceita (opcionais em ambiente local):
+  | Variável | Padrão | Descrição |
+  |---|---|---|
+  | `PORT` | `5173` | Porta do servidor Vite |
+  | `BASE_PATH` | `/` | Caminho base da aplicação |
+  
+>>>>>>> a0463f3 (feat: setup inicial do sistema de controle de energia e hvac)

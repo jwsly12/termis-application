@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: termis_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-termisrootpass12}
+      MYSQL_DATABASE: ${DB_DATABASE:-nexus_db}
+      MYSQL_USER: ${DB_USERNAME:-termis}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-termisrootpass12}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql:/docker-entrypoint-initdb.d
+    networks:
+      - termis_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: ./termis_project_api/Dockerfile
+    container_name: termis_api
+    restart: unless-stopped
+    volumes:
+      - ./termis_project_api:/usr/src/app:Z
+      - /usr/src/app/node_modules
+    working_dir: /usr/src/app
+    command: sh -c "npm install --legacy-peer-deps && npm run start:dev"
+    environment:
+      DB_HOST: mysql 
+      DB_PORT: 3306
+      DB_USERNAME: ${DB_USERNAME:-termis}
+      DB_PASSWORD: ${DB_PASSWORD:-termisrootpass12}
+      DB_NAME: ${DB_DATABASE:-nexus_db}
+      JWT_SECRET: ${JWT_SECRET:-dGVzdGVfY2hhcGFkaW5oYV8wMzIxX25leHVzCg}
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - termis_network
+
+  web:
+    image: node:20-alpine
+    container_name: termis_web
+    restart: unless-stopped
+    environment:
+      - VITE_SKIP_OXC=true
+      - NODE_ENV=development
+    volumes:
+      - ./artifacts/termis-web:/usr/src/app:Z 
+      - ./artifacts/api-server:/usr/src/api-server:Z 
+      - /usr/src/app/node_modules
+    working_dir: /usr/src/app
+    ports:
+      - "80:5173"
+    command: >
+      sh -c "sed -i '/@workspace\/api-client-react/d' package.json && 
+             rm -f package-lock.json && 
+             npm install --force --legacy-peer-deps && 
+             npm install /usr/src/api-server --force --legacy-peer-deps && 
+             npm run dev -- --host 0.0.0.0"
+    depends_on:
+      - api
+    networks:
+      - termis_network
+
+networks:
+  termis_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
