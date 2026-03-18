@@ -6,7 +6,7 @@
 
 ## 📖 Sobre o Projeto
 
-O **SmartCool** é uma aplicação robusta desenvolvida para monitorar e controlar centrais de ar-condicionado de forma inteligente. O objetivo principal é reduzir o desperdício elétrico através de uma interface de alta performance, permitindo que engenheiros e mantenedores visualizem dados críticos e tomem decisões baseadas em métricas reais.
+O **TermisApplication** é uma aplicação robusta desenvolvida para monitorar e controlar centrais de ar-condicionado de forma inteligente. O objetivo principal é reduzir o desperdício elétrico através de uma interface de alta performance, permitindo que engenheiros e mantenedores visualizem dados críticos e tomem decisões baseadas em métricas reais.
 
 ### 🎯 Diferenciais Estratégicos
 - **Otimização de Carga:** Algoritmos que evitam picos de consumo durante o acionamento de condensadoras.
