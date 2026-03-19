@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# 🧊 SmartCool & Energy Optimizer ⚡
+# 🧊 termis & Energy Optimizer ⚡
 
 > Sistema inteligente de gestão de HVAC (Heating, Ventilation, and Air Conditioning) focado em eficiência energética e automação de processos de refrigeração.
 
@@ -113,7 +112,7 @@ Este projeto foi concebido sob o pilar da sustentabilidade. Acreditamos que a me
   cd artifacts/termis-web
   pnpm dev
   ```
-  Acesse: **http://localhost:5173**
+  Acesse: **http://localhost:80**
 
   ### Rodar a API Express (estrutura base)
   ```bash
