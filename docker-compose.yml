@@ -6,10 +6,10 @@ services:
     container_name: termis_mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-termisrootpass12}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-passwd}
       MYSQL_DATABASE: ${DB_DATABASE:-nexus_db}
       MYSQL_USER: ${DB_USERNAME:-termis}
-      MYSQL_PASSWORD: ${DB_PASSWORD:-termisrootpass12}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-passwd}
     ports:
       - "3306:3306"
     volumes:
@@ -38,9 +38,9 @@ services:
       DB_HOST: mysql 
       DB_PORT: 3306
       DB_USERNAME: ${DB_USERNAME:-termis}
-      DB_PASSWORD: ${DB_PASSWORD:-termisrootpass12}
+      DB_PASSWORD: ${DB_PASSWORD:-passwd}
       DB_NAME: ${DB_DATABASE:-nexus_db}
-      JWT_SECRET: ${JWT_SECRET:-dGVzdGVfY2hhcGFkaW5oYV8wMzIxX25leHVzCg}
+      JWT_SECRET: ${JWT_SECRET:-JWT_SECRET}
       NODE_ENV: development
     ports:
       - "3000:3000"
